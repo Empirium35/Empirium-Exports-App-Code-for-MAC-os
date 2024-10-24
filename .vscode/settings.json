@@ -1,0 +1,11 @@
+{
+    "terminal.integrated.sendKeybindingsToShell": true,
+    "files.autoSave": "onWindowChange",
+    "chat.experimental.detectParticipant.enabled": true,
+    "typescript.workspaceSymbols.excludeLibrarySymbols": false,
+    "github.copilot.chat.experimental.temporalContext.enabled": true,
+    "github.copilot.chat.experimental.generateTests.codeLens": true,
+    "github.copilot.chat.experimental.inlineChatCompletionTrigger.enabled": true,
+    "github.copilot.chat.experimental.inlineChatHint.enabled": true,
+    "github.copilot.chat.experimental.codeGeneration.useInstructionFiles": true
+}
