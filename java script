@@ -1,0 +1,116 @@
+import React, { useState } from 'react';
+import { StyleSheet, Text, View, Image, TextInput, Button, FlatList, TouchableOpacity, ScrollView, CheckBox } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+
+// Sample product data (replace with your actual data)
+const products = {
+  soaps: [
+    { id: '1', name: 'Soap A', image: require('./assets/soap_a.jpg'), price: 13.99 },
+    // ... more soaps
+  ],
+  animals: [
+    { id: '1', name: 'Animal A', image: require('./assets/animal_a.jpg'), price: 8900 },
+    // ... more animals
+  ],
+};
+
+// Home Screen
+function HomeScreen({ navigation }) {
+  return (
+    <View style={styles.container}>
+      <Image source={require('./assets/your_logo.png')} style={styles.logo} />
+      <Text style={styles.title}>Empirium Exports</Text>
+      <Button title="Browse Soaps" onPress={() => navigation.navigate('Soaps')} />
+      <Button title="Browse Animals" onPress={() => navigation.navigate('Animals')} />
+      <Button title="About Us" onPress={() => navigation.navigate('AboutUs')} />
+    </View>
+  );
+}
+
+// Soaps Screen
+function SoapsScreen({ navigation }) {
+  const [selectedCategory, setSelectedCategory] = useState('all'); // Start with all soaps
+
+  const renderSoapItem = ({ item }) => (
+    <View style={styles.productItem}>
+      {/* ... soap details, quantity, scent, gift wrap, "Add to Cart" button ... */}
+    </View>
+  );
+
+  return (
+    <View style={styles.container}>
+      {/* ... category selector ... */}
+      <FlatList
+        data={products.soaps}
+        renderItem={renderSoapItem}
+        keyExtractor={(item) => item.id}
+      />
+    </View>
+  );
+}
+
+// Animals Screen
+function AnimalsScreen({ navigation }) {
+  const renderAnimalItem = ({ item }) => (
+    <View style={styles.productItem}>
+      {/* ... animal details, "Contact Us" button ... */}
+      <Button title="Contact Us" onPress={() => navigation.navigate('ContactForm')} />
+    </View>
+  );
+
+  return (
+    <View style={styles.container}>
+      <FlatList
+        data={products.animals}
+        renderItem={renderAnimalItem}
+        keyExtractor={(item) => item.id}
+      />
+    </View>
+  );
+}
+
+// About Us Screen
+function AboutUsScreen() {
+  return (
+    <View style={styles.container}>
+      {/* ... your about us content ... */}
+    </View>
+  );
+}
+
+// Contact Form Screen
+function ContactFormScreen() {
+  return (
+    <View style={styles.container}>
+      {/* ... your contact form ... */}
+    </View>
+  );
+}
+
+const Stack = createStackNavigator();
+
+export default function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Soaps" component={SoapsScreen} />
+        <Stack.Screen name="Animals" component={AnimalsScreen} />
+        <Stack.Screen name="AboutUs" component={AboutUsScreen} />
+        <Stack.Screen name="ContactForm" component={ContactFormScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
+
+// Basic styles (customize as needed)
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 20,
+  },
+  // ... other styles ...
+});
